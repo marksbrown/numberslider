@@ -10,6 +10,7 @@ TESTING = False
 
 N = 3
 
+
 def ask_for_int(prompt, low, high):
     while True:
         try:
@@ -22,6 +23,7 @@ def ask_for_int(prompt, low, high):
         else:
             print("Invalid move!")
     return mv
+
 
 class Loc:
     def __init__(self, i, j):
@@ -60,24 +62,23 @@ class Cell(Loc):
 
     def draw(self):
         print(f"{self.value:>3} ", end="")
-            
+
 
 class App:
     def __init__(self):
         run_game = True
         while run_game:
             self.setup()
-            
+
             while True:
                 self.draw()
                 if not self.check_if_won():
-                    self.update(str(ask_for_int(">>", 1, N*N)))
+                    self.update(str(ask_for_int(">>", 1, N * N)))
                 else:
                     r = input("play again (y)?").lower()
                     if r[0] != "y":
                         run_game = False
                     break
-                
 
     def setup(self):
         coordinates = (divmod(i, N) for i in range(N * N))
@@ -96,7 +97,7 @@ class App:
         if self.check_if_won():
             print("YAY!")
             return
-        
+
         for first, cell in enumerate(self.cells):
             if cell.value == value:
                 break
@@ -108,7 +109,6 @@ class App:
                 )
                 return
 
-
     def check_if_won(self):
         for j, cell in enumerate(self.cells[:-1], 1):
             if cell.value != str(j):
@@ -118,7 +118,6 @@ class App:
     def draw(self):
         if self.check_if_won():
             print("Congratulations! You win!")
-
 
         for j, cell in enumerate(self.cells):
             cell.draw()
