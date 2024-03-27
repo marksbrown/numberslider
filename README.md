@@ -1,5 +1,7 @@
 # Number Sliding Puzzle
 
+![image of number sliding puzzle](game.png)
+
 Puzzle implementation completed in pure text and using Pyxel.
 The former is derived from the latter.
 
